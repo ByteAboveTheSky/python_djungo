@@ -1,0 +1,15 @@
+<h1>{{ object.place_name }}</h1>
+<h1>{{ object.cuisine }}</h1>
+<h1>{{ object.rating }}</h1>
+<h1>{{ object.price }}</h1>
+<h1>{{ object.street }}</h1>
+<h1>{{ object.city }}</h1>
+<h1>{{ object.state }}</h1>
+<h1>{{ object.zip_code }}</h1>
+<h1>{{ object.phone }}</h1>
+
+<img height=300 width= 300, src="{{object.image_url}}" \>
+
+<a href="{% url 'list-view' %}"><button>Go Back To List</button></a>
+<a href="{% url 'update-view' pk=object.id %}"><button>Update</button></a>
+<a href="{% url 'delete-view' pk=object.id %}"><button>Delete</button></a>

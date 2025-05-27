@@ -1,0 +1,14 @@
+<h1>Make: {{object.make}}</h1>
+<h2>Model: {{object.model}}</h2>
+<h2>Color: {{object.color}}</h2>
+<h2>Engin: {{object.engin}}</h2>
+<h2>Year: {{object.year}}</h2>
+{% if object.image %}
+<img src="{{object.image.url}}"\>
+{% else %}
+<h3> No image </h3>
+{%endif%}
+
+<a href="{% url 'update-view' pk=object.id %}"><button>Update</button></a>
+<a href="{% url 'list-view' %}"><button>Go back list</button></a>
+<a href="{% url 'delete-view' pk=object.id %}"><button>Delete</button></a>

@@ -1,0 +1,6 @@
+<h1>Cars with color: {{ color }}</h1>
+{% for car in filtered_cars %}
+  <a href="{{ car.get_absolute_url }}"><h2>{{ car }}</h2></a>
+{% empty %}
+  <p>No cars found for this color.</p>
+{% endfor %}

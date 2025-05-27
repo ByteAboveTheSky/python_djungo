@@ -1,0 +1,26 @@
+<h1>Restaurants</h1>
+<h2>Cities</h2>
+{% for c in all_cities %}
+<a href="{% url 'search_city' city=c %}"><h2><button>{{c}}</button></h2></a>
+{% endfor %}
+<a href="{% url 'list-view'  %}"><h2><button>All cities</button></h2></a>
+
+{% if city %}
+<h2>In the city of {{city}}</h2>
+<h2>We found {{number_of_rest}}</h2>
+
+{% for i in rest_found %}
+    <a href="{{ i.get_absolute_url }}"><h2>{{i.place_name}} {{i.cuisine}}</h2></a>
+    <hr>
+{% endfor %}
+
+{% else %}
+<h2>All restaurants</h2>
+
+    {% for i in object_list %}
+    <a href="{{ i.get_absolute_url }}"><h2>{{i.place_name}} {{i.cuisine}}</h2></a>
+    <hr>
+{% endfor %}
+{% endif %}
+
+

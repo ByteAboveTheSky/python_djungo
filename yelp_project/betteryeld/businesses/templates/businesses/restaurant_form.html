@@ -1,0 +1,8 @@
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="save">
+    </form>
+
+
+    <a href="{% url 'list-view' %}"><button style="padding:20px; border-radius:20px;color:yellow;background:blue;font-weight:bold;margin:10px;">go back to list</button></a>

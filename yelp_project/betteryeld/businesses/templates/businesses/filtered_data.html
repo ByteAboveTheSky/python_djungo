@@ -1,0 +1,9 @@
+<h2>In the city of {{city}}</h2>
+<h2>We found {{number_of_rest}}</h2>
+<h4>By the way {{message}}</h4>
+
+<h1>Restaurants:</h1>
+{% for i in rest_found %}
+<a href="{{ i.get_absolute_url }}"><h2>{{i.place_name}} {{i.city}}</h2></a>
+<hr>
+{% endfor %}

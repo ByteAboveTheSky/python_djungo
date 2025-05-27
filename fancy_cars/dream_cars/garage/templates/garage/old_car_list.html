@@ -1,0 +1,30 @@
+<h1>All avail colors:</h1>
+{%for color in all_colors%}
+<a href="{% url 'filter-color-view' color=color %}"><h2><button>{{color}}</button></h2></a>
+{% endfor %}
+<a href="{% url 'list-view'  %}"><h2><button>All cars</button></h2></a>
+
+{% if filter_type == "color" %}
+<h1>Cars with color: {{ color }}</h1>
+{% for car in filtered_cars %}
+  <a href="{{ car.get_absolute_url }}"><h2>{{ car }}</h2></a>
+{% empty %}
+  <p>No cars found for this color.</p>
+{% endfor %}
+
+{% elif filter_type == "make" %}
+<h1>Cars makes by: {{ make }}</h1>
+{% for car in filtered_cars %}
+  <a href="{{ car.get_absolute_url }}"><h2>{{ car }}</h2></a>
+{% empty %}
+  <p>No cars found.</p>
+{% endfor %}
+
+{% else %}
+<h1>This is the car list</h1>
+{% for i in object_list %}
+<a href="{{i.get_absolute_url}}"><h2>{{ i.make }}, {{ i.model }}, {{ i.year }}</h2></a>
+<hr>
+{% endfor %}
+{% endif %}
+
