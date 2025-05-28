@@ -17,6 +17,10 @@
 * ```whoami``` -  Show your current username 
 * ```top``` - Show running processes (press `q` to quit)
 * **(control + 'c')** - kill the server
+* **command  + a** - select all text
+
+# Shortcut for pyCharm:
+* **(cmd + opt+ L)** - Make HTML code pretty (auto-format)
 
 # Django 
 - https://docs.djangoproject.com/en/5.2/howto/deployment/
@@ -92,7 +96,6 @@
    - **R** - Read
    - **U** - Update
    - **D** - Delete
-   
 
 # HTTP Request
 ![img_5.png](img_5.png)
@@ -111,4 +114,69 @@
 **Bubble Sort**
 >  is one of the simplest sorting algorithms.
 It repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. Over multiple passes, larger elements "bubble up" to the end of the list — that's where the name comes from.
+
+# Django Project Structure with Explanation
+
+* myproject/
+	* **manage.py** — Command-line utility for Django tasks - 
+        >Main entry point for running Django commands: `runserver`, `migrate`, `createsuperuser`, etc.
+      * **myproject/** — Project configuration folder.
+      >Main settings and configuration for your project.
+        * **__init__.py** — Marks this as a Python module
+          * **settings.py** — Project-wide settings. 
+          >Contains configuration like database settings, installed apps, static files paths, etc.
+            * **urls.py** — Root URL routes.
+          >Main URL router — maps URLs to views or includes app routers.
+            * **asgi.py** — Entry point for ASGI servers (async) 
+          >Entrypoints for deployment: for WSGI servers (Gunicorn, uWSGI)
+            * **wsgi.py** — Entry point for WSGI servers (sync) 
+          >Entrypoints for deployment:for ASGI servers (Daphne, Uvicorn)
+    * **app_name/** — A Django app (feature/module).
+      >A Django app — a self-contained feature like blog, users, shop, etc.
+      * __init__.py — Marks this as a module
+      * admin.py — Register models in admin panel.
+      >Register models to make them editable in Django’s admin panel.
+      * apps.py — App configuration
+      * migrations/ — DB migration files.
+      >Auto-generated files for schema changes, created via `makemigrations`.
+        * __init__.py — Makes migrations/ a module
+      * models.py — Database models (tables).
+      >Define data structures (tables) using Django ORM.
+      * views.py — Logic for handling requests.
+      >Functions or classes that return responses to HTTP requests.
+      * urls.py — (Optional) app-specific routes.
+      >(Optional) Local URL config for this app — imported in main `urls.py`.
+      * serializers.py — (Optional) for Django REST Framework.
+      >(If using DRF) Converts models to/from JSON.
+      * forms.py — (Optional) for HTML forms.
+      >(Optional) Django forms for handling user input via HTML.
+    * templates/ — Global HTML templates.
+  >Reusable HTML templates for rendering views. Uses Django template tags like
+      * base.html — Base template for reuse
+    * static/ — Global static files (CSS, JS, images).
+  >Frontend static files (CSS, JavaScript, images, fonts).
+      * style.css
+    * media/ — Uploaded media files (user content).
+  >Folder for user-uploaded content, such as images or documents.
+    * requirements.txt — List of project dependencies.
+      * .env — Environment variables (for secrets) 
+    ``` 
+    DEBUG=True
+    SECRET_KEY=my-secret-key
+    DATABASE_URL=sqlite:///db.sqlite3
+  ```
+  
+> Run python manage.py startapp app_name to create new apps. 
+
+> Add your app to INSTALLED_APPS in settings.py. 
+
+> Use modular apps (e.g. users/, blog/, store/) for a clean structure. 
+
+> You can also put templates inside apps (e.g. app_name/templates/app_name/). 
+
+> Use python manage.py runserver to launch the development server.
+
+
+
+
 

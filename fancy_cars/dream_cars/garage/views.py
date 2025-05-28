@@ -11,6 +11,7 @@ class CarListView(ListView):
         context = super(CarListView, self).get_context_data(**kwargs)
         colors = set([i.color for i in self.object_list])
         context["all_colors"] = list(colors)
+        context["cars"] = self.object_list
         return context
 
 class CarDetailView(DetailView):
@@ -31,18 +32,14 @@ class CarDeleteView(DeleteView):
 
 class ByColorView(ListView):
     model = Car
-    template_name = 'old_car_list.html'
+    template_name = 'car_list.html'
 
     def get_context_data(self, **kwargs):
         context = super(ByColorView, self).get_context_data(**kwargs)
-        # print("______________ context:",context)
-        # print("______________ context_car:",context['object_list'])
-
-        filtered_cars = Car.objects.filter(color = self.kwargs["color"])
-        context["filtered_cars"] = filtered_cars
-        context["color"] = self.kwargs["color"]
-        context["filter_type"] = "color"
-        print(filtered_cars)
+        filtered = Car.objects.filter(color=self.kwargs["color"])
+        colors = set([i.color for i in Car.objects.all()])
+        context["cars"] = filtered
+        context["all_colors"] = list(colors)
         return context
 
 class ByMakeView(ListView):
